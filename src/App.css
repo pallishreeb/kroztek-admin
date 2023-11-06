@@ -1,0 +1,132 @@
+/** @format */
+
+body {
+  overflow: auto;
+  width: "100vw";
+}
+.btn-b {
+  background-color: inherit;
+  border: 1px solid #005BAB;
+  color: #005BAB;
+}
+.btn:hover {
+  background-color: #005BAB !important;
+  color: white !important;
+  border: none;
+}
+.login {
+  width: 100vw;
+  height: 100vh;
+  background: whitesmoke;
+  display: flex;
+  justify-content: center;
+}
+.heading-login {
+  opacity: 1;
+  font-size: 2rem;
+  color: #005BAB;
+  padding-bottom: 0.7rem;
+}
+.form {
+  margin-top: 4.5rem;
+  width: 400px;
+  height: 430px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 1.4rem;
+  background-color: #fff !important;
+  border-radius: 20px;
+   
+  border: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+
+.form:hover {
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.05);
+}
+.form-group {
+    width: 80%;
+  background: inherit;
+  opacity: 0.8;
+  border: 1px solid #7e8ba3;
+  border-radius: 50px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 15px;
+  padding-right: 10px;
+  color: #005BAB;
+  line-height: 0;
+  display: flex;
+  gap: 5px;
+}
+.form-group input {
+    width: 90%;
+  background: inherit;
+  outline: none;
+  border: none;
+  padding: 4px;
+  font-weight: bolder;
+  color: #000;
+}
+.btn-login {
+  position: relative;
+  margin-top: 1rem;
+  border-radius: 50px;
+  border: none;
+  background-image: linear-gradient(160deg, #8ceabb 0%, #378f7b 100%);
+  width: 80%;
+  padding: 5px 20px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #005BAB;
+  opacity: 0.9;
+}
+
+.title-input {
+  width: 100%;
+  outline: 0cm;
+  border: 0;
+  border-bottom: 1.5px solid black;
+  padding: 0.5rem 0.8rem;
+  font-size: 1rem;
+}
+#add-blog {
+  height: 29rem !important;
+  overflow: auto;
+}
+
+@media only screen and (max-width: 510px) {
+  .form {
+    width: 310px;
+  }
+  .form-group {
+    padding: 5px 15px;
+  }
+  #add-blog {
+    height: 37.5rem !important;
+  }
+}
+@media only screen and (max-width: 309px) {
+  .form {
+    width: 240px;
+  }
+    .form-group {
+    padding: 5px 10px;
+  }
+  #add-blog {
+    height: 38.9rem !important;
+  }
+}
+@media only screen and (min-width: 510px) {
+  #add-blog {
+    height: 36.5rem !important;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  #add-blog {
+    height: 30.5rem !important;
+  }
+}
+
+/* background-image: linear-gradient(160deg, #8ceabb 0%, #378f7b 100%); */
