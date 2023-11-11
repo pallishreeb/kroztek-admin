@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
+import { MenuItem, ToggleButton, ToggleButtonGroup } from "@mui/material";
 import {
   Container,
   TextField,
@@ -21,7 +21,7 @@ import { CategoryContext } from "../context/CategoryProvider";
 function CategoryPage() {
   const navigate = useNavigate();
   const authContext = useContext(AuthContext);
-  const { isAuthenticated, token } = authContext;
+  const { isAuthenticated, token,user } = authContext;
   const categoryContext = useContext(CategoryContext);
   const {
     getAllCategories,
@@ -36,10 +36,13 @@ function CategoryPage() {
   // State for category input field
   const [categoryName, setCategoryName] = useState("");
   const [brand, setBrand] = useState("");
+  const [type, setType] = useState("Product");
   const [rank, setRank] = useState(0);
 
   // State for currently editing category (if any)
   const [editingCategory, setEditingCategory] = useState(null);
+  const isAddInclude = JSON.parse(user)?.permissions?.includes("addCategory");
+const isEditIncluded = JSON.parse(user)?.permissions?.includes("editCategory");
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -62,16 +65,19 @@ function CategoryPage() {
         categoryName,
         brand,
         rank,
+        type
       };
       updateCategory(form, token);
       setCategoryName("");
       setBrand("")
+      setType("")
       setRank(0);
       setEditingCategory(null);
     } else {
       let form = {
         category: categoryName,
         brand,
+        type,
         rank,
       };
       // Add a new category to your context
@@ -79,6 +85,7 @@ function CategoryPage() {
       createCategory(form, token);
       setCategoryName("");
       setBrand("")
+      setType("")
       setRank(0);
     }
   };
@@ -89,6 +96,7 @@ function CategoryPage() {
     setEditingCategory(index);
     setRank(categories[index]?.rank || 0);
     setBrand(categories[index]?.brand || "")
+    setType(categories[index]?.type)
   };
 
   // Function to handle category deletion
@@ -112,7 +120,11 @@ function CategoryPage() {
 
   return (
     <Container className="container mt-5">
-      <h2>Add/Edit Category</h2>
+    
+      {(isAddInclude || isEditIncluded) && (
+        <>
+       <h2>Add/Edit Category</h2>
+  
       <form onSubmit={handleSubmit}>
         <TextField
           label="Category Name"
@@ -128,6 +140,18 @@ function CategoryPage() {
           value={brand}
           onChange={(e) => setBrand(e.target.value)}
         />
+        <TextField
+        select
+        label="Select an Option"
+        variant="outlined"
+        fullWidth
+        value={type}
+        onChange={(e) => setType(e.target.value)}
+        className="mt-2"
+      >
+        <MenuItem value="Product">Product</MenuItem>
+        <MenuItem value="Service">Service</MenuItem>
+      </TextField>
         <TextField
           label="Rank"
           variant="outlined"
@@ -146,17 +170,21 @@ function CategoryPage() {
           {editingCategory !== null ? "Update" : "Add"}
         </Button>
       </form>
-
+      </>
+      )}
       <h2 className="mt-3">Categories</h2>
       <TableContainer component={Paper}>
         <Table>
           <TableHead>
             <TableRow>
             <TableCell>Rank</TableCell>
-             <TableCell>Brand</TableCell>           
+             <TableCell>Brand</TableCell>    
+             <TableCell>Type</TableCell>        
               <TableCell>Category Name</TableCell>
-              <TableCell>Edit</TableCell>
-              <TableCell>Delete</TableCell>
+              {JSON.parse(user)?.permissions?.includes("editCategory") && (
+              <TableCell>Edit</TableCell> )}
+               {JSON.parse(user)?.permissions?.includes("deleteCategory") && (
+              <TableCell>Delete</TableCell> )}
               <TableCell>Status</TableCell>
             </TableRow>
           </TableHead>
@@ -169,7 +197,9 @@ function CategoryPage() {
                   <TableRow key={category._id}>
                     <TableCell>{category?.rank || 0}</TableCell>
                     <TableCell>{category?.brand || "NA"}</TableCell>
+                    <TableCell>{category?.type || "NA"}</TableCell>
                     <TableCell>{category.categoryName}</TableCell>
+                    {JSON.parse(user)?.permissions?.includes("editCategory") && (
                     <TableCell>
                       <Button
                         variant="outlined"
@@ -178,6 +208,8 @@ function CategoryPage() {
                         <EditIcon />
                       </Button>
                     </TableCell>
+                    )}
+                    {JSON.parse(user)?.permissions?.includes("deleteCategory") && (
                     <TableCell>
                       <Button
                         variant="outlined"
@@ -186,6 +218,7 @@ function CategoryPage() {
                         <DeleteIcon />
                       </Button>
                     </TableCell>
+                        )}
                     <TableCell>
                       <ToggleButtonGroup
                         value={category?.isActive}

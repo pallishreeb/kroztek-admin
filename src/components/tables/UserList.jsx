@@ -2,9 +2,10 @@
 
 import React, { useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import { IconButton, Tooltip } from "@mui/material";
-import { Delete } from "@mui/icons-material";
+import {  IconButton, Tooltip } from "@mui/material";
+import { Delete, EditOutlined } from "@mui/icons-material";
 import LoadingTable from "./Loading";
+import { Link } from "react-router-dom";
 export default function UserTable({
   users,
   token,
@@ -21,8 +22,32 @@ export default function UserTable({
     { field: "phoneNumber", headerName: "PhoneNumber", width: 130 },
     { field: "active", headerName: "IsActive", width: 80 },
     { field: "isAdmin", headerName: "IsAdmin", width: 80 },
-    { field: "createdAt", headerName: "CreatedAt", width: 170 },
+    {
+      field: "edit",
+      headerName: "Edit",
+      width: 40,
+      renderCell: (params) => {
+        return (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
+            <Link
+              to={`/edit-user/${params.row._id}`}
+              style={{
+                color: "#green",
+              }}
+            >
+              <EditOutlined />
+            </Link>
+          </div>
+        );
+      },
+    },
   ];
+
   const onRowsSelectionHandler = (ids) => {
     const selectedRowsData = ids.map((id) =>
       users.find((row) => row._id === id)

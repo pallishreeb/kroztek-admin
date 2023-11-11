@@ -20,7 +20,7 @@ import { APP_URL, IMG_URL } from "../../config";
 import { toast } from "react-toastify";
 import { editStatus } from "../../apis/service";
 
-export default function ServiceTable({ token }) {
+export default function ServiceTable({ token ,user}) {
   const serviceContext = useContext(ServiceContext);
   const { deleteSinglePost, loading, products, setProducts, getAllPosts } = serviceContext;
   const [selectedRows, setselectedRows] = useState([]);
@@ -146,6 +146,7 @@ export default function ServiceTable({ token }) {
               justifyContent: "space-between",
             }}
           >
+            {JSON.parse(user)?.permissions?.includes("editProduct") && (
             <Link
               to={`/edit-service/${params.row._id}`}
               style={{
@@ -154,6 +155,7 @@ export default function ServiceTable({ token }) {
             >
               <EditOutlined />
             </Link>
+            )}
             {/* <DeleteOutline
             sx={{
               color:"red"
@@ -255,11 +257,13 @@ export default function ServiceTable({ token }) {
             justifyContent: "flex-end",
           }}
         >
+          {JSON.parse(user)?.permissions?.includes("deleteProduct") && (
           <Tooltip title="Delete" onClick={() => deleteHandler()}>
             <IconButton size="lg">
               <Delete />
             </IconButton>
           </Tooltip>
+          )}
         </div>
       )}
       <DataGrid

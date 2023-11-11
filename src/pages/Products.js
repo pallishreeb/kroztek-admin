@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom"
 const Products = () => {
     const navigate = useNavigate();
     const authContext = useContext(AuthContext);
-    const { isAuthenticated, token, } = authContext;
+    const { isAuthenticated, token,user } = authContext;
     const postContext = useContext(PostContext);
     const { getAllPosts, products} = postContext
     useEffect(() => {
@@ -16,15 +16,19 @@ const Products = () => {
     useEffect(() => {
         getAllPosts(token)
     }, [products.length])
+
     return (
         <div className='container mt-5'>
             <div style={{ background: " #ffffff", color: "#525", position: "relative", padding: "5px 15px", display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "0.9rem" }}>
                 <span style={{ fontWeight: "bolder", fontSize: "1.7rem" }}>Products</span>
+                {JSON.parse(user)?.permissions?.includes("addProduct") && (
                 <button onClick={() => navigate("/add-product")} type="button" class="btn " style={{ borderColor: "#005BAB", display: "flex", gap: "10px", color: "#005BAB", alignItems: "center", justifyContent: "space-between" }}>
                     <Add />
-                    Add Product</button>
+                    Add Product
+                    </button>
+                    )}
             </div>
-            <ProductTable token={token} />
+            <ProductTable token={token} user={user} />
         </div>
     );
 }

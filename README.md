@@ -1,3 +1,3 @@
 <!-- @format -->
 
-Admin Dashboard for Blog appliction
+Admin Dashboard for Kroztek appliction

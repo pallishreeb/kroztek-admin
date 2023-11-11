@@ -24,14 +24,16 @@ import { CategoryContext } from "../context/CategoryProvider";
 function SubcategoryPage() {
   const navigate = useNavigate();
   const authContext = useContext(AuthContext);
-  const { isAuthenticated, token } = authContext;
+  const { isAuthenticated, token,user } = authContext;
   const subcategoryContext = useContext(CategoryContext);
+const isAddInclude = JSON.parse(user)?.permissions?.includes("addSub");
+const isEditIncluded = JSON.parse(user)?.permissions?.includes("editSub");
   const {
     removeSubcategory,
     updateSubcategory,
     createSubcategory,
     allSubcategories,
-    categories, // Assuming you have a categories array
+    categories,
     loading,
     subcategories,
     getAllCategories,
@@ -110,6 +112,8 @@ function SubcategoryPage() {
 
   return (
     <Container className="container mt-5">
+       {(isAddInclude || isEditIncluded) && (
+      <>
       <h2>Add/Edit Subcategory</h2>
       <form onSubmit={handleSubmit}>
         <InputLabel htmlFor="parent-category">
@@ -156,7 +160,8 @@ function SubcategoryPage() {
           {editingSubcategory !== null ? "Update" : "Add"}
         </Button>
       </form>
-
+      </>
+       )}
       <h2 className="mt-3">Subcategories</h2>
       <TableContainer component={Paper}>
         <Table>
@@ -165,8 +170,10 @@ function SubcategoryPage() {
               <TableCell>Rank</TableCell>
               <TableCell>Subcategory Name</TableCell>
               <TableCell>Parent Category</TableCell>
-              <TableCell>Edit</TableCell>
-              <TableCell>Delete</TableCell>
+              {JSON.parse(user)?.permissions?.includes("editSub") && (
+              <TableCell>Edit</TableCell>)}
+               {JSON.parse(user)?.permissions?.includes("deleteSub") && (
+              <TableCell>Delete</TableCell> )}
               <TableCell>Status</TableCell>
             </TableRow>
           </TableHead>
@@ -182,6 +189,7 @@ function SubcategoryPage() {
                     <TableCell>
                       {subcategory?.categoryId.categoryName}
                     </TableCell>
+                    {JSON.parse(user)?.permissions?.includes("editSub") && (
                     <TableCell>
                       <Button
                         variant="outlined"
@@ -190,6 +198,8 @@ function SubcategoryPage() {
                         <EditIcon />
                       </Button>
                     </TableCell>
+                    )}
+                    {JSON.parse(user)?.permissions?.includes("deleteSub") && (
                     <TableCell>
                       <Button
                         variant="outlined"
@@ -198,6 +208,7 @@ function SubcategoryPage() {
                         <DeleteIcon />
                       </Button>
                     </TableCell>
+                    )}
                     <TableCell>
                       <ToggleButtonGroup
                         value={subcategory?.isActive}

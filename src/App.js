@@ -17,6 +17,7 @@ import AddProduct from "./pages/AddProduct";
 import EditProduct from "./pages/EditProduct";
 import AddService from "./pages/AddService";
 import EditService from "./pages/EditService";
+import EditUser from "./pages/EditUser";
 import ClientForm from "./pages/ClientForm";
 import { Nav, Topbar } from "./components/index";
 
@@ -24,6 +25,8 @@ import { Nav, Topbar } from "./components/index";
 import { AuthContext } from "./context/auth/AuthProvider";
 import CategoryPage from "./pages/CategoryPage";
 import SubcategoryPage from "./pages/SubcategoryPage";
+import Register from "./pages/Register";
+import Verify from "./pages/verify";
 
 function App() {
   const { isAuthenticated } = useContext(AuthContext);
@@ -68,6 +71,10 @@ function App() {
                   path="/edit-service/:productId"
                   element={<EditService />}
                 />
+                  <Route
+                  path="/edit-user/:userId"
+                  element={<EditUser />}
+                />
                 <Route path="/products" element={<Products />} />
                 <Route path="/services" element={<Services />} />
                 <Route path="/users" element={<Users />} />
@@ -78,6 +85,8 @@ function App() {
                 <Route path="/showmetadata" element={<DisplayMetadata />} />
                 <Route path="/metadata/:metadataId" element={<Metadata />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/verify/:email" element={<Verify />} />
               </Routes>
             </Box>
           </Media>
@@ -97,6 +106,10 @@ function App() {
                   path="/edit-service/:productId"
                   element={<EditService />}
                 />
+                  <Route
+                  path="/edit-user/:userId"
+                  element={<EditUser />}
+                />
                 <Route path="/services" element={<Services />} />
                 <Route path="/users" element={<Users />} />
                 <Route path="/categories" element={<CategoryPage />} />
@@ -106,6 +119,8 @@ function App() {
                 <Route path="/showmetadata" element={<DisplayMetadata />} />
                 <Route path="/metadata/:metadataId" element={<Metadata />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/verify/:email" element={<Verify />} />
               </Routes>
             </Box>
           </Media>
@@ -125,6 +140,10 @@ function App() {
                   path="/edit-service/:productId"
                   element={<EditService />}
                 />
+                 <Route
+                  path="/edit-user/:userId"
+                  element={<EditUser />}
+                />
                 <Route path="/services" element={<Services />} />
                 <Route path="/users" element={<Users />} />
                 <Route path="/categories" element={<CategoryPage />} />
@@ -134,6 +153,8 @@ function App() {
                 <Route path="/showmetadata" element={<DisplayMetadata />} />
                 <Route path="/metadata/:metadataId" element={<Metadata />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/verify/:email" element={<Verify />} />
               </Routes>
             </Box>
           </Media>

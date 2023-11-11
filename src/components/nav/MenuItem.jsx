@@ -19,7 +19,7 @@ import {
 import InventoryIcon from '@mui/icons-material/Inventory';
 import { AuthApiProvider } from "../../context/auth/AuthProvider";
 const MenuItem = ({ open, navigate }) => {
-  const { logout } = AuthApiProvider();
+  const { logout,user } = AuthApiProvider();
   const data = [
     {
       name: "Dashboard",

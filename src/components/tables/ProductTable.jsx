@@ -20,7 +20,7 @@ import { APP_URL, IMG_URL } from "../../config";
 import { toast } from "react-toastify";
 import { editStatus } from "../../apis/product";
 
-export default function ProductTable({ token }) {
+export default function ProductTable({ token, user }) {
   const postContext = useContext(PostContext);
   const { deleteSinglePost, loading, products, setProducts, getAllPosts } =
     postContext;
@@ -147,14 +147,16 @@ export default function ProductTable({ token }) {
               justifyContent: "space-between",
             }}
           >
-            <Link
-              to={`/edit-product/${params.row._id}`}
-              style={{
-                color: "#green",
-              }}
-            >
-              <EditOutlined />
-            </Link>
+            {JSON.parse(user)?.permissions?.includes("editProduct") && (
+              <Link
+                to={`/edit-product/${params.row._id}`}
+                style={{
+                  color: "#green",
+                }}
+              >
+                <EditOutlined />
+              </Link>
+            )}
             {/* <DeleteOutline
             sx={{
               color:"red"
@@ -256,11 +258,13 @@ export default function ProductTable({ token }) {
             justifyContent: "flex-end",
           }}
         >
-          <Tooltip title="Delete" onClick={() => deleteHandler()}>
-            <IconButton size="lg">
-              <Delete />
-            </IconButton>
-          </Tooltip>
+          {JSON.parse(user)?.permissions?.includes("deleteProduct") && (
+            <Tooltip title="Delete" onClick={() => deleteHandler()}>
+              <IconButton size="lg">
+                <Delete />
+              </IconButton>
+            </Tooltip>
+          )}
         </div>
       )}
       <DataGrid
