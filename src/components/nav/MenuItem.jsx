@@ -91,7 +91,7 @@ const MenuItem = ({ open, navigate }) => {
                 minWidth: 0,
                 mr: open ? 3 : "auto",
                 justifyContent: "center",
-                color: "tan",
+                color: "white",
               }}
             >
               {item.icon}

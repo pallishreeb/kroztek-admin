@@ -34,6 +34,18 @@ const HeaderCard = ({ statistics }) => {
       value: statistics?.services,
       path:"/services"
     },
+    {
+      title: "Pending Products",
+      img: <InventoryIcon sx={{ height: "50px", width: "50px" }} />,
+      value: statistics?.pendingProducts,
+      path:"/pendings/product"
+    },
+    {
+      title: "Pending Services",
+      img: <ElectricalServices sx={{ height: "50px", width: "50px" }} />,
+      value: statistics?.pendingServices,
+      path:"/pendings/service"
+    },
 
   ];
   return (

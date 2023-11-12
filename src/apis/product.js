@@ -71,3 +71,22 @@ export const getStatisticsData = async (token) => {
 
     return await axios.get(`${API_URL}/product/statistics`, { headers });
 };
+
+
+export const getPendingProducts = async (token) => {
+    const headers = {
+        authorization: token,
+    };
+
+    return await axios.get(`${API_URL}/product/pending-products`, { headers });
+};
+
+export const approveProducts = async (productId, token, status) => {
+
+    const headers = {
+        authorization: token,
+    };
+    return await axios.put(`${API_URL}/product/approve-product`, {productId,status}, {
+        headers,
+    });
+};

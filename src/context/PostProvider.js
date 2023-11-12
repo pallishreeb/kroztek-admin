@@ -6,7 +6,7 @@ import {
   createPost ,
   getPost,
   getPosts,
-  deletePost
+  deletePost,
 } from "../apis/product";
 
 export const PostContext = createContext();

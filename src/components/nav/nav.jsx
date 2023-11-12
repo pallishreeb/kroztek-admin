@@ -33,7 +33,7 @@ const closedMixin = (theme) => ({
   }),
   overflowX: "hidden",
   background: "#005BAB",
-  color: "tan",
+  color: "white",
   width: `calc(${theme.spacing(7)} + 1px)`,
   [theme.breakpoints.up("sm")]: {
     width: `calc(${theme.spacing(8)} + 1px)`,
@@ -93,10 +93,10 @@ export default function Nav({ active, type }) {
               }}
             >
               {/* <img src={logo} alt="logo" width={"39px"} height="39px" /> */}
-              <h3 className="mt-2">Kroztek</h3>
+              <h3 className="mt-2" color="white">Kroztek</h3>
             </Box>
           )}
-          <IconButton onClick={handleDrawerClose} sx={{ color: "tan" }}>
+          <IconButton onClick={handleDrawerClose} sx={{ color: "white" }}>
             {theme.direction === "rtl" ? <ChevronRight /> : <ChevronLeft />}
           </IconButton>
         </DrawerHeader>

@@ -27,6 +27,9 @@ import CategoryPage from "./pages/CategoryPage";
 import SubcategoryPage from "./pages/SubcategoryPage";
 import Register from "./pages/Register";
 import Verify from "./pages/verify";
+import PendingProducts from "./pages/PendingProducts";
+import PendingServices from "./pages/PendingServices";
+import ViewPage from "./pages/ViewPage";
 
 function App() {
   const { isAuthenticated } = useContext(AuthContext);
@@ -75,6 +78,7 @@ function App() {
                   path="/edit-user/:userId"
                   element={<EditUser />}
                 />
+                <Route path="/view/:name/:productId" element={<ViewPage />} />
                 <Route path="/products" element={<Products />} />
                 <Route path="/services" element={<Services />} />
                 <Route path="/users" element={<Users />} />
@@ -84,6 +88,8 @@ function App() {
                 <Route path="/client" element={<ClientForm />} />
                 <Route path="/showmetadata" element={<DisplayMetadata />} />
                 <Route path="/metadata/:metadataId" element={<Metadata />} />
+                <Route path="/pendings/product" element={<PendingProducts />} />
+                <Route path="/pendings/service" element={<PendingServices />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/verify/:email" element={<Verify />} />
@@ -110,6 +116,7 @@ function App() {
                   path="/edit-user/:userId"
                   element={<EditUser />}
                 />
+                 <Route path="/view/:name/:productId" element={<ViewPage />} />
                 <Route path="/services" element={<Services />} />
                 <Route path="/users" element={<Users />} />
                 <Route path="/categories" element={<CategoryPage />} />
@@ -118,6 +125,8 @@ function App() {
                 <Route path="/client" element={<ClientForm />} />
                 <Route path="/showmetadata" element={<DisplayMetadata />} />
                 <Route path="/metadata/:metadataId" element={<Metadata />} />
+                <Route path="/pendings/product" element={<PendingProducts />} />
+                <Route path="/pendings/service" element={<PendingServices />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/verify/:email" element={<Verify />} />
@@ -144,6 +153,7 @@ function App() {
                   path="/edit-user/:userId"
                   element={<EditUser />}
                 />
+                 <Route path="/view/:name/:productId" element={<ViewPage />} />
                 <Route path="/services" element={<Services />} />
                 <Route path="/users" element={<Users />} />
                 <Route path="/categories" element={<CategoryPage />} />
@@ -152,6 +162,8 @@ function App() {
                 <Route path="/client" element={<ClientForm />} />
                 <Route path="/showmetadata" element={<DisplayMetadata />} />
                 <Route path="/metadata/:metadataId" element={<Metadata />} />
+                <Route path="/pendings/product" element={<PendingProducts />} />
+                <Route path="/pendings/service" element={<PendingServices />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/verify/:email" element={<Verify />} />
