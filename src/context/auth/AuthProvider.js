@@ -147,6 +147,7 @@ const AuthProvider = (props) => {
     setUser(null);
     setError("");
   };
+
   // Clear Errors
   const clearErrors = () => setError("");
 

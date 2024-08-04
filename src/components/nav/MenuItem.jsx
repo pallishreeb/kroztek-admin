@@ -42,6 +42,11 @@ const MenuItem = ({ open, navigate }) => {
       path: "/products",
     },
     {
+      name: "Orders",
+      icon: <InventoryIcon color="white" />,
+      path: "/orders",
+    },
+    {
       name: "Services",
       icon: <InventoryIcon color="white" />,
       path: "/services",

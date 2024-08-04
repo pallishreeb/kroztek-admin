@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Products from "./pages/Products";
 import Services from "./pages/Services";
+import Orders from "./pages/Orders";
 import Login from "./pages/Login";
 import Users from "./pages/Users";
 import Metadata from "./pages/Metadata";
@@ -80,7 +81,8 @@ function App() {
                 />
                 <Route path="/view/:name/:productId" element={<ViewPage />} />
                 <Route path="/products" element={<Products />} />
-                <Route path="/services" element={<Services />} />
+                <Route path="/products" element={<Products />} />
+                <Route path="/orders" element={<Orders />} />
                 <Route path="/users" element={<Users />} />
                 <Route path="/categories" element={<CategoryPage />} />
                 <Route path="/subcategories" element={<SubcategoryPage />} />
@@ -118,6 +120,7 @@ function App() {
                 />
                  <Route path="/view/:name/:productId" element={<ViewPage />} />
                 <Route path="/services" element={<Services />} />
+                <Route path="/orders" element={<Orders />} />
                 <Route path="/users" element={<Users />} />
                 <Route path="/categories" element={<CategoryPage />} />
                 <Route path="/subcategories" element={<SubcategoryPage />} />
@@ -156,6 +159,7 @@ function App() {
                  <Route path="/view/:name/:productId" element={<ViewPage />} />
                 <Route path="/services" element={<Services />} />
                 <Route path="/users" element={<Users />} />
+                <Route path="/orders" element={<Orders />} />
                 <Route path="/categories" element={<CategoryPage />} />
                 <Route path="/subcategories" element={<SubcategoryPage />} />
                 <Route path="/metadata" element={<Metadata />} />
