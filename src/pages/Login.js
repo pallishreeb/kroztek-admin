@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom"
 import { toast } from "react-toastify"
 import userlockImg from "../img/user-lock.png"
 const Login = () => {
-  const [type, setType] = useState(false);
+  const [type, setType] = useState(true);
 
   const navigate = useNavigate();
 

@@ -32,7 +32,10 @@ function AddProduct() {
     documents: [],
     websiteLink: "",
     youtubeLink: "",
-    rank:0
+    rank:0,
+    sellingPrice: "",
+    originalPrice:"",
+    tags: "",
   });
   useEffect(() => {
     !isAuthenticated && navigate("/login");
@@ -186,7 +189,7 @@ function AddProduct() {
         <Grid item xs={12}>
           <form onSubmit={handleSubmit}>
             {/* Rank */}
-            <TextField
+            {/* <TextField
               label="Rank"
               name="rank"
               type="number"
@@ -194,7 +197,7 @@ function AddProduct() {
               onChange={handleInputChange}
               fullWidth
               margin="normal"
-            />
+            /> */}
             {/* Categories */}
             <Grid container spacing={3}>
               <Grid item xs={12} sm={6}>
@@ -309,9 +312,9 @@ function AddProduct() {
               <Grid item xs={12} sm={6}>
                 {/* Website Link */}
                 <TextField
-                  label="Website Link"
-                  name="websiteLink"
-                  value={product.websiteLink}
+                  label="Original Price"
+                  name="originalPrice"
+                  value={product.originalPrice}
                   onChange={handleInputChange}
                   fullWidth
                   margin="normal"
@@ -320,15 +323,24 @@ function AddProduct() {
               <Grid item xs={12} sm={6}>
                 {/* YouTube Link */}
                 <TextField
-                  label="YouTube Link"
-                  name="youtubeLink"
-                  value={product.youtubeLink}
+                  label="Selling Price"
+                  name="sellingPrice"
+                  value={product.sellingPrice}
                   onChange={handleInputChange}
                   fullWidth
                   margin="normal"
                 />
               </Grid>
             </Grid>
+             {/* Tags */}
+             <TextField
+              label="Tags"
+              name="tags"
+              value={product.tags}
+              onChange={handleInputChange}
+              fullWidth
+              margin="normal"
+            />
             {/* Add Images */}
             <label
               style={{
@@ -370,6 +382,7 @@ function AddProduct() {
                         src={URL.createObjectURL(image)}
                         alt={`Imageb ${index}`}
                         height="100"
+                        width="100"
                       />
                       {/* Remove button */}
                       <button

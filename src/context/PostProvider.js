@@ -61,7 +61,7 @@ const getSinglePost = (id, token) => {
 };
 //new functions for products
 const addProduct = (product,token,navigate) =>{
-  console.log("product",product)
+  // console.log("product",product)
   setLoading(true)
   const formData = new FormData();
 
@@ -73,6 +73,9 @@ const addProduct = (product,token,navigate) =>{
   formData.append("websiteLink", product?.websiteLink);
   formData.append("youtubeLink", product?.youtubeLink);
   formData.append("rank", product?.rank);
+  formData.append("sellingPrice", product?.sellingPrice);
+  formData.append("originalPrice", product?.originalPrice);
+  formData.append("tags", product?.tags);
   // Append features as JSON string
   formData.append("features", JSON.stringify(product?.features));
 

@@ -33,7 +33,10 @@ function EditProduct() {
     documents: [],
     websiteLink: "",
     youtubeLink: "",
-    rank:0
+    rank:0,
+    sellingPrice: "",
+    originalPrice:"",
+    tags: "",
   });
 
   useEffect(() => {
@@ -58,7 +61,10 @@ function EditProduct() {
             documents: [],
             websiteLink: productData?.websiteLink,
             youtubeLink: productData?.youtubeLink,
-            rank:productData?.rank
+            rank:productData?.rank,
+            sellingPrice: productData?.sellingPrice,
+            originalPrice:productData?.originalPrice,
+            tags:productData?.tags,
           });
           setImgUrls(
             productData?.images?.length > 0 ? productData?.images : []
@@ -222,6 +228,9 @@ function EditProduct() {
     formData.append("websiteLink", product?.websiteLink);
     formData.append("youtubeLink", product?.youtubeLink);
     formData.append("rank", product?.rank);
+    formData.append("sellingPrice", product?.sellingPrice);
+    formData.append("originalPrice", product?.originalPrice);
+    formData.append("tags", product?.tags);
     // Filter out empty feature objects
     const filteredFeatures = product.features.filter((feature) => {
       return feature.name.trim() !== "" || feature.value.trim() !== "";
@@ -267,7 +276,7 @@ if(loading){
         <Grid item xs={12}>
           <form onSubmit={handleSubmit}>
               {/* Rank */}
-              <TextField
+              {/* <TextField
               label="Rank"
               name="rank"
               type="number"
@@ -275,7 +284,7 @@ if(loading){
               onChange={handleInputChange}
               fullWidth
               margin="normal"
-            />
+            /> */}
             {/* Categories */}
             <Grid container spacing={3}>
               <Grid item xs={12} sm={6}>
@@ -400,9 +409,9 @@ if(loading){
               <Grid item xs={12} sm={6}>
                 {/* Website Link */}
                 <TextField
-                  label="Website Link"
-                  name="websiteLink"
-                  value={product.websiteLink}
+                  label="Original Price"
+                  name="originalPrice"
+                  value={product.originalPrice}
                   onChange={handleInputChange}
                   fullWidth
                   margin="normal"
@@ -411,15 +420,23 @@ if(loading){
               <Grid item xs={12} sm={6}>
                 {/* YouTube Link */}
                 <TextField
-                  label="YouTube Link"
-                  name="youtubeLink"
-                  value={product.youtubeLink}
+                  label="Selling Price"
+                  name="sellingPrice"
+                  value={product.sellingPrice}
                   onChange={handleInputChange}
                   fullWidth
                   margin="normal"
                 />
               </Grid>
             </Grid>
+            <TextField
+              label="Tags"
+              name="tags"
+              value={product?.tags}
+              onChange={handleInputChange}
+              fullWidth
+              margin="normal"
+            />
             {/* Add Images */}
             <label
               style={{
